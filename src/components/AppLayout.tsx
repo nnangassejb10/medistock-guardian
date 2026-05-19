@@ -82,7 +82,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
        <div className="h-16 flex items-center gap-3 px-5 border-b border-sidebar-border">
   <div className="size-9 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center overflow-hidden">
     <img
-      src="/images/logo.png"
+      src="/images/hcsgl-logo.png"
       alt="Logo PharmaSino-Gab"
       className="w-7 h-7 object-contain"
     />
