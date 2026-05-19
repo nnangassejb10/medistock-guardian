@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Pill, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,15 +37,18 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-background via-background to-secondary/30">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-white">
       <div className="w-full max-w-md">
-        <div className="flex flex-col items-center mb-8">
-          <div className="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
-          
-            <Pill className="size-8 text-primary" /> 
-          </div>
-          <h1 className="text-2xl font-bold">Pharmacie Hôpital de Coopération Sino-Gabonaise de Libreville</h1>
-          <p className="text-sm text-muted-foreground mt-1">
+        <div className="flex flex-col items-center text-center mb-8">
+          <img
+            src="/images/hcsgl-logo.png"
+            alt="Logo Pharmacie Hôpital de Coopération Sino-Gabonaise"
+            className="w-32 h-32 object-contain mb-5 drop-shadow-md"
+          />
+          <h1 className="text-2xl font-bold tracking-tight text-foreground max-w-sm">
+            Pharmacie Hôpital de Coopération Sino-Gabonaise de Libreville
+          </h1>
+          <p className="text-sm text-muted-foreground mt-2">
             Gestion de Stock — PharmaHCSGL
           </p>
         </div>
