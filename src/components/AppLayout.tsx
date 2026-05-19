@@ -79,21 +79,17 @@ export function AppLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex bg-background">
       {/* Sidebar */}
       <aside className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col fixed inset-y-0 left-0 z-30">
-       <div className="h-16 flex items-center gap-3 px-5 border-b border-sidebar-border">
-  <div className="size-9 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center overflow-hidden">
-    <img
-      src="/images/hcsgl-logo.png"
-      alt="Logo PharmaSino-Gab"
-      className="w-7 h-7 object-contain"
-    />
-  </div>
-
-  <div>
-    <div className="font-semibold text-sm leading-tight">
+       <div className="min-h-24 flex items-center gap-3 px-4 py-3 border-b border-sidebar-border">
+  <img
+    src="/images/hcsgl-logo.png"
+    alt="Logo PharmaSino-Gab"
+    className="w-16 h-16 object-contain shrink-0 drop-shadow-sm"
+  />
+  <div className="min-w-0">
+    <div className="font-bold text-base leading-tight tracking-tight">
       PharmaSino-Gab
     </div>
-
-    <div className="text-[11px] text-muted-foreground">
+    <div className="text-[11px] text-muted-foreground leading-snug mt-0.5">
       Pharmacie de l’Hôpital de Coopération Sino-Gabonaise
     </div>
   </div>
