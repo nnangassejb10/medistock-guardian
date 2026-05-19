@@ -79,15 +79,25 @@ export function AppLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen flex bg-background">
       {/* Sidebar */}
       <aside className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col fixed inset-y-0 left-0 z-30">
-        <div className="h-16 flex items-center gap-3 px-5 border-b border-sidebar-border">
-          <div className="size-9 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center">
-            <Logo className="size-5 text-primary" />
-          </div>
-          <div>
-            <div className="font-semibold text-sm leading-tight">PharmaCare</div>
-            <div className="text-[11px] text-muted-foreground">Pharmacie hospitalière</div>
-          </div>
-        </div>
+       <div className="h-16 flex items-center gap-3 px-5 border-b border-sidebar-border">
+  <div className="size-9 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center overflow-hidden">
+    <img
+      src="/images/logo.png"
+      alt="Logo PharmaSino-Gab"
+      className="w-7 h-7 object-contain"
+    />
+  </div>
+
+  <div>
+    <div className="font-semibold text-sm leading-tight">
+      PharmaSino-Gab
+    </div>
+
+    <div className="text-[11px] text-muted-foreground">
+      Pharmacie de l’Hôpital de Coopération Sino-Gabonaise
+    </div>
+  </div>
+</div>
 
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-6">
           {NAV.map((sec) => {
@@ -154,7 +164,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <div className="flex-1 ml-64 flex flex-col min-h-screen">
         <header className="h-16 border-b bg-card/60 backdrop-blur sticky top-0 z-20 flex items-center justify-between px-6">
           <div className="text-sm text-muted-foreground">
-            Centre Hospitalier Universitaire — Libreville
+            Pharmacie de l’Hôpital de Coopération Sino-Gabonaise
           </div>
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" className="relative">

@@ -41,11 +41,12 @@ function LoginPage() {
       <div className="w-full max-w-md">
         <div className="flex flex-col items-center mb-8">
           <div className="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
-            <Pill className="size-8 text-primary" />
+          
+            <Pill className="size-8 text-primary" /> 
           </div>
-          <h1 className="text-2xl font-bold">PharmaCare</h1>
+          <h1 className="text-2xl font-bold">Pharmacie Hôpital de Coopération Sino-Gabonaise de Libreville</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Gestion de stock — Pharmacie hospitalière
+            Gestion de Stock — PharmaHCSGL
           </p>
         </div>
 
