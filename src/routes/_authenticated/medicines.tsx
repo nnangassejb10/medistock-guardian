@@ -24,6 +24,8 @@ interface Medicine {
   description: string | null;
   quantity: number;
   unit_price: number;
+  purchase_price: number;
+  selling_price: number;
   expiration_date: string;
   supplier_id: string | null;
   lot_number: string | null;
@@ -77,7 +79,9 @@ function MedicinesPage() {
       category_id: editing.category_id || null,
       supplier_id: editing.supplier_id || null,
       quantity: Number(editing.quantity ?? 0),
-      unit_price: Number(editing.unit_price ?? 0),
+      unit_price: Number(editing.selling_price ?? editing.unit_price ?? 0),
+      purchase_price: Number(editing.purchase_price ?? 0),
+      selling_price: Number(editing.selling_price ?? 0),
       min_threshold: Number(editing.min_threshold ?? 10),
       expiration_date: editing.expiration_date,
       description: editing.description ?? null,
@@ -122,7 +126,7 @@ function MedicinesPage() {
           <p className="text-sm text-muted-foreground mt-1">{filtered.length} produit(s)</p>
         </div>
         {canEdit && (
-          <Button onClick={() => { setEditing({ min_threshold: 10, quantity: 0, unit_price: 0 }); setOpen(true); }}>
+          <Button onClick={() => { setEditing({ min_threshold: 10, quantity: 0, unit_price: 0, purchase_price: 0, selling_price: 0 }); setOpen(true); }}>
             <Plus className="size-4" /> Ajouter
           </Button>
         )}
@@ -148,7 +152,8 @@ function MedicinesPage() {
                 <th className="px-4 py-3 font-medium">Nom</th>
                 <th className="px-4 py-3 font-medium">Catégorie</th>
                 <th className="px-4 py-3 font-medium text-right">Quantité</th>
-                <th className="px-4 py-3 font-medium text-right">Prix</th>
+                <th className="px-4 py-3 font-medium text-right">Prix achat</th>
+                <th className="px-4 py-3 font-medium text-right">Prix vente</th>
                 <th className="px-4 py-3 font-medium">Expiration</th>
                 <th className="px-4 py-3 font-medium">Statut</th>
                 <th className="px-4 py-3 font-medium text-right">Actions</th>
@@ -165,7 +170,8 @@ function MedicinesPage() {
                       {m.categories?.name ?? "—"}
                     </td>
                     <td className="px-4 py-3 text-right tabular-nums">{m.quantity}</td>
-                    <td className="px-4 py-3 text-right tabular-nums">{formatXAF(Number(m.unit_price))}</td>
+                    <td className="px-4 py-3 text-right tabular-nums text-muted-foreground">{formatXAF(Number(m.purchase_price ?? 0))}</td>
+                    <td className="px-4 py-3 text-right tabular-nums font-medium">{formatXAF(Number(m.selling_price ?? m.unit_price))}</td>
                     <td className="px-4 py-3 text-muted-foreground">{formatDate(m.expiration_date)}</td>
                     <td className="px-4 py-3">
                       <span className={`inline-block px-2 py-0.5 rounded text-xs border ${status.color}`}>
@@ -190,7 +196,7 @@ function MedicinesPage() {
                 );
               })}
               {filtered.length === 0 && (
-                <tr><td colSpan={8} className="px-4 py-12 text-center text-muted-foreground">Aucun médicament</td></tr>
+                <tr><td colSpan={9} className="px-4 py-12 text-center text-muted-foreground">Aucun médicament</td></tr>
               )}
             </tbody>
           </table>
@@ -235,8 +241,12 @@ function MedicinesPage() {
                 <Input type="number" value={editing.quantity ?? 0} onChange={(e) => setEditing({ ...editing, quantity: +e.target.value })} disabled={!!editing.id} />
               </div>
               <div className="space-y-2">
-                <Label>Prix unitaire (FCFA)</Label>
-                <Input type="number" value={editing.unit_price ?? 0} onChange={(e) => setEditing({ ...editing, unit_price: +e.target.value })} />
+                <Label>Prix d'achat fournisseur (FCFA)</Label>
+                <Input type="number" value={editing.purchase_price ?? 0} onChange={(e) => setEditing({ ...editing, purchase_price: +e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Prix de vente patient (FCFA)</Label>
+                <Input type="number" value={editing.selling_price ?? 0} onChange={(e) => setEditing({ ...editing, selling_price: +e.target.value })} />
               </div>
               <div className="space-y-2">
                 <Label>Seuil minimal</Label>
