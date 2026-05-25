@@ -18,6 +18,7 @@ import {
 import { useAuth, type AppRole } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/hcsgl-logo.png";
 
 interface NavItem {
   to: string;
@@ -81,9 +82,11 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <aside className="w-64 bg-sidebar border-r border-sidebar-border flex flex-col fixed inset-y-0 left-0 z-30">
        <div className="min-h-24 flex items-center gap-3 px-4 py-3 border-b border-sidebar-border">
   <img
-    src="/images/hcsgl-logo.png"
+    src={logo}
     alt="Logo PharmaSino-Gab"
     className="w-16 h-16 object-contain shrink-0 drop-shadow-sm"
+    width={1024}
+    height={1024}
   />
   <div className="min-w-0">
     <div className="font-bold text-base leading-tight tracking-tight">

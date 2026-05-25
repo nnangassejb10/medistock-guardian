@@ -135,7 +135,9 @@ export type Database = {
           lot_number: string | null
           min_threshold: number
           name: string
+          purchase_price: number
           quantity: number
+          selling_price: number
           supplier_id: string | null
           unit_price: number
           updated_at: string
@@ -154,7 +156,9 @@ export type Database = {
           lot_number?: string | null
           min_threshold?: number
           name: string
+          purchase_price?: number
           quantity?: number
+          selling_price?: number
           supplier_id?: string | null
           unit_price?: number
           updated_at?: string
@@ -173,7 +177,9 @@ export type Database = {
           lot_number?: string | null
           min_threshold?: number
           name?: string
+          purchase_price?: number
           quantity?: number
+          selling_price?: number
           supplier_id?: string | null
           unit_price?: number
           updated_at?: string

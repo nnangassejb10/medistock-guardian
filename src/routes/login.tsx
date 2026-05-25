@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import logo from "@/assets/hcsgl-logo.png";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
@@ -41,11 +42,13 @@ function LoginPage() {
       <div className="w-full max-w-md">
         <div className="flex flex-col items-center text-center mb-8">
           <img
-            src="/images/hcsgl-logo.png"
+            src={logo}
             alt="Logo Pharmacie Hôpital de Coopération Sino-Gabonaise"
-            className="w-32 h-32 object-contain mb-5 drop-shadow-md"
+            className="w-40 h-40 object-contain mb-5 drop-shadow-md"
+            width={1024}
+            height={1024}
           />
-          <h1 className="text-2xl font-bold tracking-tight text-blue-200 max-w-sm">
+          <h1 className="text-2xl font-bold tracking-tight text-foreground max-w-sm">
             Pharmacie Hôpital de la Coopération Sino-Gabonaise de Libreville
           </h1>
           <p className="text-sm text-muted-foreground mt-2">

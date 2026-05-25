@@ -56,7 +56,7 @@ function MovementForm({ type }: { type: "entree" | "sortie" }) {
 
   const { data: meds = [] } = useQuery({
     queryKey: ["medicines-light"],
-    queryFn: async () => (await supabase.from("medicines").select("id,name,quantity,unit_price").eq("is_active", true).order("name")).data ?? [],
+    queryFn: async () => (await supabase.from("medicines").select("id,name,quantity,unit_price,purchase_price,selling_price").eq("is_active", true).order("name")).data ?? [],
   });
 
   const submit = async () => {
@@ -90,7 +90,11 @@ function MovementForm({ type }: { type: "entree" | "sortie" }) {
       <div className="space-y-4">
         <div className="space-y-2">
           <Label>Médicament *</Label>
-          <Select value={medicineId} onValueChange={(v) => { setMedicineId(v); const m: any = meds.find((x: any) => x.id === v); if (m) setUnitPrice(Number(m.unit_price)); }}>
+          <Select value={medicineId} onValueChange={(v) => {
+            setMedicineId(v);
+            const m: any = meds.find((x: any) => x.id === v);
+            if (m) setUnitPrice(Number(type === "entree" ? (m.purchase_price ?? m.unit_price) : (m.selling_price ?? m.unit_price)));
+          }}>
             <SelectTrigger><SelectValue placeholder="Sélectionner..." /></SelectTrigger>
             <SelectContent>
               {meds.map((m: any) => (
@@ -102,10 +106,14 @@ function MovementForm({ type }: { type: "entree" | "sortie" }) {
           </Select>
         </div>
         {selected && (
-          <div className="text-xs text-muted-foreground bg-muted/40 rounded p-3">
-            Stock actuel: <strong className="text-foreground">{(selected as any).quantity}</strong> unités
+          <div className="text-xs text-muted-foreground bg-muted/40 rounded p-3 space-y-1">
+            <div>Stock actuel: <strong className="text-foreground">{(selected as any).quantity}</strong> unités</div>
+            <div className="flex gap-4">
+              <span>Prix achat fournisseur: <strong className="text-foreground">{Number((selected as any).purchase_price ?? 0).toLocaleString()} FCFA</strong></span>
+              <span>Prix vente patient: <strong className="text-foreground">{Number((selected as any).selling_price ?? (selected as any).unit_price).toLocaleString()} FCFA</strong></span>
+            </div>
             {type === "sortie" && quantity > (selected as any).quantity && (
-              <span className="text-destructive ml-2">⚠ Stock insuffisant</span>
+              <span className="text-destructive">⚠ Stock insuffisant</span>
             )}
           </div>
         )}
@@ -115,7 +123,7 @@ function MovementForm({ type }: { type: "entree" | "sortie" }) {
             <Input type="number" min={1} value={quantity || ""} onChange={(e) => setQuantity(+e.target.value)} />
           </div>
           <div className="space-y-2">
-            <Label>{type === "entree" ? "Prix unitaire achat" : "Prix unitaire"} (FCFA)</Label>
+            <Label>{type === "entree" ? "Prix achat fournisseur" : "Prix vente patient"} (FCFA)</Label>
             <Input type="number" value={unitPrice || ""} onChange={(e) => setUnitPrice(+e.target.value)} />
           </div>
         </div>
