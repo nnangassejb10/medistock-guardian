@@ -45,8 +45,8 @@ function LoginPage() {
             alt="Logo Pharmacie Hôpital de Coopération Sino-Gabonaise"
             className="w-32 h-32 object-contain mb-5 drop-shadow-md"
           />
-          <h1 className="text-2xl font-bold tracking-tight text-foreground max-w-sm">
-            Pharmacie Hôpital de Coopération Sino-Gabonaise de Libreville
+          <h1 className="text-2xl font-bold tracking-tight text-blue-200 max-w-sm">
+            Pharmacie Hôpital de la Coopération Sino-Gabonaise de Libreville
           </h1>
           <p className="text-sm text-muted-foreground mt-2">
             Gestion de Stock — PharmaHCSGL

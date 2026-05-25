@@ -90,7 +90,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
       PharmaSino-Gab
     </div>
     <div className="text-[11px] text-muted-foreground leading-snug mt-0.5">
-      Pharmacie de l’Hôpital de Coopération Sino-Gabonaise
+      Pharmacie de l’Hôpital de la Coopération Sino-Gabonaise
     </div>
   </div>
 </div>
@@ -160,7 +160,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
       <div className="flex-1 ml-64 flex flex-col min-h-screen">
         <header className="h-16 border-b bg-card/60 backdrop-blur sticky top-0 z-20 flex items-center justify-between px-6">
           <div className="text-sm text-muted-foreground">
-            Pharmacie de l’Hôpital de Coopération Sino-Gabonaise
+            Pharmacie de l’Hôpital de la Coopération Sino-Gabonaise
           </div>
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" className="relative">
