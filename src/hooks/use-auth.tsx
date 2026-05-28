@@ -42,10 +42,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const loadProfile = async (userId: string) => {
-    const [{ data: prof }, { data: roleRows }] = await Promise.all([
+    const [{ data: prof, error: profileError }, { data: roleRows, error: rolesError }] = await Promise.all([
       supabase.from("profiles").select("*").eq("id", userId).maybeSingle(),
       supabase.from("user_roles").select("role").eq("user_id", userId),
     ]);
+
+    if (profileError || rolesError) {
+      console.error("Erreur de chargement du profil utilisateur", profileError ?? rolesError);
+    }
+
     setProfile(prof as any);
     setRoles((roleRows ?? []).map((r: any) => r.role as AppRole));
   };
@@ -55,10 +60,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(sess);
       setUser(sess?.user ?? null);
       if (sess?.user) {
-        setTimeout(() => loadProfile(sess.user.id), 0);
+        setLoading(true);
+        setTimeout(() => {
+          loadProfile(sess.user.id).finally(() => setLoading(false));
+        }, 0);
       } else {
         setProfile(null);
         setRoles([]);
+        setLoading(false);
       }
     });
 
